@@ -1,0 +1,183 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>For My Love ❤️</title>
+<style>
+    body {
+        background-color: #ffe6f0; /* romantic pink */
+        font-family: 'Dancing Script', cursive, Arial, sans-serif;
+        text-align: center;
+        color: #ff3366;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .envelope {
+        position: relative;
+        width: 320px;
+        height: 200px;
+        background: #ff80ab;
+        cursor: pointer;
+        border-radius: 6px;
+        overflow: hidden;
+        box-shadow: 0px 6px 12px rgba(0,0,0,0.3);
+    }
+
+    /* Envelope flap */
+    .envelope::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        border-left: 160px solid transparent;
+        border-right: 160px solid transparent;
+        border-bottom: 100px solid #ff4d94;
+        transition: transform 1s;
+        transform-origin: top;
+        z-index: 2;
+    }
+
+    /* Big letter */
+    .letter {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 70%;
+        max-width: 700px;
+        height: auto;
+        background: #fff;
+        transform: translate(-50%, -50%) scale(0);
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
+        box-sizing: border-box;
+        text-align: left;
+        line-height: 1.8em;
+        font-size: 1.3em;
+        background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png');
+        background-repeat: repeat;
+        z-index: 20;
+        transition: transform 1s ease-in-out;
+    }
+
+    .letter.open {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    .letter h1 {
+        font-family: 'Dancing Script', cursive;
+        color: #d63384;
+        text-align: center;
+        font-size: 2.2em;
+    }
+
+    .letter p {
+        color: #3b2f2f;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 1.8em;
+        cursor: pointer;
+        color: #d63384;
+        z-index: 25; /* make sure it's always visible */
+    }
+
+    /* Hearts */
+    .heart {
+        position: fixed;
+        bottom: -10px;
+        font-size: 20px;
+        animation: floatUp 6s linear infinite;
+        pointer-events: none;
+    }
+
+    @keyframes floatUp {
+        0% {transform: translateY(0); opacity:1;}
+        100% {transform: translateY(-800px); opacity: 0;}
+    }
+</style>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Envelope -->
+    <div class="envelope" onclick="openLetter()"></div>
+
+<div class="letter" id="loveLetter">
+    <span class="close-btn" onclick="closeLetter()">❌</span>
+    <h1>To SAYANG ❤️</h1>
+
+    <p>Hye Sayang! ,</p>
+
+    <p>I just wanted to take a moment to write this down for you.  
+    Life has been so much better since you came into it.  
+    You’ve given me laughter on days I felt down, comfort when I was stressed,  
+    and support when I needed it the most.</p>
+
+    <p>I know we argue sometimes, and we don’t always see things the same way.  
+    But even through those moments, you still choose to stay,  
+    and that means the world to me.  
+    It’s not about being perfect, it’s about us growing together.</p>
+
+    <p>Thank you for accepting me with all my flaws,  
+    for being patient when I overthink,  
+    and for reminding me that I don’t have to face everything alone.  
+    I hope I make you feel just as loved and appreciated.</p>
+
+    <p>I don’t promise a perfect journey,  
+    but I promise I’ll always try to give you my best —  
+    to listen, to understand, and to never stop choosing you.</p>
+
+    <br>
+    <p style="text-align:right; font-style:italic;">
+        Always with you, <br>
+        Your Boyfriend
+    </p>
+</div>
+
+<script>
+    let heartInterval;
+
+    function openLetter(){
+        document.getElementById("loveLetter").classList.add("open");
+        startHearts();
+    }
+
+    function closeLetter(){
+        document.getElementById("loveLetter").classList.remove("open");
+        stopHearts();
+    }
+
+    function startHearts(){
+        heartInterval = setInterval(createHeart, 400);
+    }
+
+    function stopHearts(){
+        clearInterval(heartInterval);
+    }
+
+    function createHeart(){
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.style.left = Math.random() * window.innerWidth + 'px';
+        heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+        heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+        heart.innerHTML = '❤️';
+        document.body.appendChild(heart);
+
+        setTimeout(() => { heart.remove(); }, 6000);
+    }
+</script>
+</body>
+</html>
